@@ -116,7 +116,7 @@ BEGIN
   RETURN false;
 END;
 $SQL$ LANGUAGE plpgsql;
-GRANT EXECUTE ON FUNCTION admin.ensure_dummy_metrics_table(text) TO pgwatch2;
+GRANT EXECUTE ON FUNCTION admin.ensure_dummy_metrics_table(text) TO uqwous9dkicc7vb2aijk;
 
 
 

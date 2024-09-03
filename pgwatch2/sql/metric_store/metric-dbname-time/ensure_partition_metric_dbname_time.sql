@@ -62,7 +62,7 @@ BEGIN
                   WHERE tablename = l_part_name_2nd
                     AND schemaname = 'subpartitions')
   THEN
-    --RAISE NOTICE 'creating partition % ...', l_part_name_2nd; 
+    --RAISE NOTICE 'creating partition % ...', l_part_name_2nd;
     EXECUTE format($$CREATE %s TABLE IF NOT EXISTS subpartitions.%s PARTITION OF public.%s FOR VALUES IN (%s) PARTITION BY RANGE (time)$$,
                     l_unlogged, quote_ident(l_part_name_2nd), quote_ident(metric), quote_literal(dbname));
     EXECUTE format($$COMMENT ON TABLE subpartitions.%s IS 'pgwatch2-generated-metric-dbname-lvl'$$, quote_ident(l_part_name_2nd));
@@ -132,8 +132,8 @@ BEGIN
 
   END LOOP;
 
-  
+
 END;
 $SQL$ LANGUAGE plpgsql;
 
-GRANT EXECUTE ON FUNCTION admin.ensure_partition_metric_dbname_time(text,text,timestamp with time zone,integer) TO pgwatch2;
+GRANT EXECUTE ON FUNCTION admin.ensure_partition_metric_dbname_time(text,text,timestamp with time zone,integer) TO uqwous9dkicc7vb2aijk;

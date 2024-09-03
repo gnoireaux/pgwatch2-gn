@@ -34,4 +34,4 @@ BEGIN
 END;
 $SQL$ LANGUAGE plpgsql;
 
-GRANT EXECUTE ON FUNCTION admin.ensure_partition_metric(text) TO pgwatch2;
+GRANT EXECUTE ON FUNCTION admin.ensure_partition_metric(text) TO uqwous9dkicc7vb2aijk;
