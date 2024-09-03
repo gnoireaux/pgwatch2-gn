@@ -535,7 +535,7 @@ select
       where l.relation = i.indexrelid
       and a.state = 'active'
       and a.query ~* 'concurrently'
-  )) as invalid_indexes  
+  )) as invalid_indexes
 from
   pg_stat_database, pg_control_system()
 where
@@ -572,7 +572,7 @@ select
       where l.relation = i.indexrelid
       and a.state = 'active'
       and a.query ~* 'concurrently'
-  )) as invalid_indexes  
+  )) as invalid_indexes
 from
   pg_stat_database, pg_control_system()
 where
@@ -618,7 +618,7 @@ select
       where l.relation = i.indexrelid
       and a.state = 'active'
       and a.query ~* 'concurrently'
-  )) as invalid_indexes  
+  )) as invalid_indexes
 from
   pg_stat_database, pg_control_system()
 where
@@ -657,7 +657,7 @@ select
       where l.relation = i.indexrelid
       and a.state = 'active'
       and a.query ~* 'concurrently'
-  )) as invalid_indexes  
+  )) as invalid_indexes
 from
   pg_stat_database, pg_control_system()
 where
@@ -756,7 +756,7 @@ select
       where l.relation = i.indexrelid
       and a.state = 'active'
       and a.query ~* 'concurrently'
-  )) as invalid_indexes  
+  )) as invalid_indexes
 from
   pg_stat_database, pg_control_system()
 where
@@ -808,7 +808,7 @@ select
       where l.relation = i.indexrelid
       and a.state = 'active'
       and a.query ~* 'concurrently'
-  )) as invalid_indexes  
+  )) as invalid_indexes
 from
   pg_stat_database, pg_control_system()
 where
@@ -5442,7 +5442,7 @@ $$
       and not n.nspname like any (array[E'pg\\_%', 'information_schema'])
 $$ LANGUAGE sql SECURITY DEFINER;
 
-GRANT EXECUTE ON FUNCTION get_table_bloat_approx() TO pgwatch2;
+GRANT EXECUTE ON FUNCTION get_table_bloat_approx() TO uqwous9dkicc7vb2aijk;
 COMMENT ON FUNCTION get_table_bloat_approx() is 'created for pgwatch2';
 
 -- below routine fixes function search_path to only include "more secure" schemas with no "public" CREATE privileges
@@ -5608,7 +5608,7 @@ FROM (
  ) s4
 $$;
 
-GRANT EXECUTE ON FUNCTION get_table_bloat_approx_sql() TO pgwatch2;
+GRANT EXECUTE ON FUNCTION get_table_bloat_approx_sql() TO uqwous9dkicc7vb2aijk;
 COMMENT ON FUNCTION get_table_bloat_approx_sql() is 'created for pgwatch2';
 
 -- below routine fixes function search_path to only include "more secure" schemas with no "public" CREATE privileges
@@ -5773,7 +5773,7 @@ FROM (
  ) s4
 $$;
 
-GRANT EXECUTE ON FUNCTION get_table_bloat_approx_sql() TO pgwatch2;
+GRANT EXECUTE ON FUNCTION get_table_bloat_approx_sql() TO uqwous9dkicc7vb2aijk;
 COMMENT ON FUNCTION get_table_bloat_approx_sql() is 'created for pgwatch2';
 
 -- below routine fixes function search_path to only include "more secure" schemas with no "public" CREATE privileges
@@ -6568,7 +6568,7 @@ la = getloadavg()
 return [la[0], la[1], la[2]]
 $$ LANGUAGE plpython3u VOLATILE;
 
-GRANT EXECUTE ON FUNCTION get_load_average() TO pgwatch2;
+GRANT EXECUTE ON FUNCTION get_load_average() TO uqwous9dkicc7vb2aijk;
 
 COMMENT ON FUNCTION get_load_average() is 'created for pgwatch2';
 
@@ -6608,7 +6608,7 @@ begin
 end;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
 
-GRANT EXECUTE ON FUNCTION get_load_average_copy() TO pgwatch2;
+GRANT EXECUTE ON FUNCTION get_load_average_copy() TO uqwous9dkicc7vb2aijk;
 
 COMMENT ON FUNCTION get_load_average_copy() is 'created for pgwatch2';
 
@@ -6702,7 +6702,7 @@ $$
 	SELECT val, val, val FROM cpu() AS cpu_now(val);
 $$ LANGUAGE sql;
 
-GRANT EXECUTE ON FUNCTION get_load_average_windows() TO pgwatch2;
+GRANT EXECUTE ON FUNCTION get_load_average_windows() TO uqwous9dkicc7vb2aijk;
 
 COMMENT ON FUNCTION get_load_average_windows() is 'created for pgwatch2';
 
@@ -6743,7 +6743,7 @@ $$
       on d.oid = s.dbid and d.datname = current_database()
 $$ LANGUAGE sql VOLATILE SECURITY DEFINER;
 
-GRANT EXECUTE ON FUNCTION get_stat_statements() TO pgwatch2;
+GRANT EXECUTE ON FUNCTION get_stat_statements() TO uqwous9dkicc7vb2aijk;
 COMMENT ON FUNCTION get_stat_statements() IS 'created for pgwatch2';
 
 -- below routine fixes function search_path to only include "more secure" schemas with no "public" CREATE privileges
@@ -6798,7 +6798,7 @@ $$
       on d.oid = s.dbid and d.datname = current_database()
 $$ LANGUAGE sql VOLATILE SECURITY DEFINER;
 
-GRANT EXECUTE ON FUNCTION get_stat_statements() TO pgwatch2;
+GRANT EXECUTE ON FUNCTION get_stat_statements() TO uqwous9dkicc7vb2aijk;
 COMMENT ON FUNCTION get_stat_statements() IS 'created for pgwatch2';
 
 -- below routine fixes function search_path to only include "more secure" schemas with no "public" CREATE privileges
@@ -6897,7 +6897,7 @@ BEGIN
 END;
 $OUTER$;
 
-GRANT EXECUTE ON FUNCTION get_stat_activity() TO pgwatch2;
+GRANT EXECUTE ON FUNCTION get_stat_activity() TO uqwous9dkicc7vb2aijk;
 COMMENT ON FUNCTION get_stat_activity() IS 'created for pgwatch2';
 
 $sql$,
@@ -7020,7 +7020,7 @@ return t.cpu_utilization_info, la[0] / cpu_count(), la[0], la[1] / cpu_count(), 
 
 $FUNCTION$;
 
-GRANT EXECUTE ON FUNCTION get_psutil_cpu() TO pgwatch2;
+GRANT EXECUTE ON FUNCTION get_psutil_cpu() TO uqwous9dkicc7vb2aijk;
 COMMENT ON FUNCTION get_psutil_cpu() IS 'created for pgwatch2';
 
 
@@ -7064,7 +7064,7 @@ sw = swap_memory()
 return vm.total, vm.used, vm.free, vm.buffers + vm.cached, vm.available, vm.percent, sw.total, sw.used, sw.free, sw.percent
 $FUNCTION$;
 
-GRANT EXECUTE ON FUNCTION get_psutil_mem() TO pgwatch2;
+GRANT EXECUTE ON FUNCTION get_psutil_mem() TO uqwous9dkicc7vb2aijk;
 COMMENT ON FUNCTION get_psutil_mem() IS 'created for pgwatch2';
 
 $sql$,
@@ -7152,7 +7152,7 @@ return ret_list
 
 $FUNCTION$;
 
-GRANT EXECUTE ON FUNCTION get_psutil_disk() TO pgwatch2;
+GRANT EXECUTE ON FUNCTION get_psutil_disk() TO uqwous9dkicc7vb2aijk;
 COMMENT ON FUNCTION get_psutil_disk() IS 'created for pgwatch2';
 
 $sql$,
@@ -7199,7 +7199,7 @@ else:
     return None, None, None, None
 $FUNCTION$;
 
-GRANT EXECUTE ON FUNCTION get_psutil_disk_io_total() TO pgwatch2;
+GRANT EXECUTE ON FUNCTION get_psutil_disk_io_total() TO uqwous9dkicc7vb2aijk;
 COMMENT ON FUNCTION get_psutil_disk_io_total() IS 'created for pgwatch2';
 
 $sql$,
@@ -7238,7 +7238,7 @@ $$
 select sum((pg_stat_file('pg_xlog/'||f)).size)::int8 from (select pg_ls_dir('pg_xlog') f) ls
 $$ LANGUAGE sql VOLATILE SECURITY DEFINER;
 
-GRANT EXECUTE ON FUNCTION get_wal_size() TO pgwatch2;
+GRANT EXECUTE ON FUNCTION get_wal_size() TO uqwous9dkicc7vb2aijk;
 COMMENT ON FUNCTION get_wal_size() IS 'created for pgwatch2';
 
 $sql$,
@@ -7258,7 +7258,7 @@ $$
 select (sum((pg_stat_file('pg_wal/' || name)).size))::int8 from pg_ls_waldir()
 $$ LANGUAGE sql VOLATILE SECURITY DEFINER;
 
-GRANT EXECUTE ON FUNCTION get_wal_size() TO pgwatch2;
+GRANT EXECUTE ON FUNCTION get_wal_size() TO uqwous9dkicc7vb2aijk;
 COMMENT ON FUNCTION get_wal_size() IS 'created for pgwatch2';
 
 $sql$,
@@ -7294,7 +7294,7 @@ $sql$,
 '{"prometheus_all_gauge_columns": true}',
 $sql$
 /* NB! If using not a real superuser but a role with "pg_monitor" grant then below execute grant is needed:
-  GRANT EXECUTE ON FUNCTION pg_stat_file(text) to pgwatch2;
+  GRANT EXECUTE ON FUNCTION pg_stat_file(text) to uqwous9dkicc7vb2aijk;
 */
 select
   (extract(epoch from now()) * 1e9)::int8 as epoch_ns,
@@ -7345,7 +7345,7 @@ $$
   select * from pg_stat_replication
 $$ LANGUAGE sql VOLATILE SECURITY DEFINER;
 
-GRANT EXECUTE ON FUNCTION get_stat_replication() TO pgwatch2;
+GRANT EXECUTE ON FUNCTION get_stat_replication() TO uqwous9dkicc7vb2aijk;
 COMMENT ON FUNCTION get_stat_replication() IS 'created for pgwatch2';
 
 $sql$,
@@ -7965,7 +7965,7 @@ return ret_list
 
 $$ LANGUAGE plpython3u VOLATILE;
 
-GRANT EXECUTE ON FUNCTION get_smart_health_per_device() TO pgwatch2;
+GRANT EXECUTE ON FUNCTION get_smart_health_per_device() TO uqwous9dkicc7vb2aijk;
 
 COMMENT ON FUNCTION get_smart_health_per_device() is 'created for pgwatch2';
 $sql$,
@@ -8041,7 +8041,7 @@ $$ LANGUAGE plpython3u VOLATILE;
 /* contacting S3 could be laggy depending on location */
 ALTER FUNCTION get_backup_age_walg() SET statement_timeout TO '30s';
 
-GRANT EXECUTE ON FUNCTION get_backup_age_walg() TO pgwatch2;
+GRANT EXECUTE ON FUNCTION get_backup_age_walg() TO uqwous9dkicc7vb2aijk;
 
 COMMENT ON FUNCTION get_backup_age_walg() is 'created for pgwatch2';
 
@@ -8108,7 +8108,7 @@ $$ LANGUAGE plpython3u VOLATILE;
 /* contacting S3 could be laggy depending on location */
 ALTER FUNCTION get_backup_age_pgbackrest() SET statement_timeout TO '30s';
 
-GRANT EXECUTE ON FUNCTION get_backup_age_pgbackrest() TO pgwatch2;
+GRANT EXECUTE ON FUNCTION get_backup_age_pgbackrest() TO uqwous9dkicc7vb2aijk;
 
 COMMENT ON FUNCTION get_backup_age_pgbackrest() is 'created for pgwatch2';
 
@@ -8210,7 +8210,7 @@ AS $FUNCTION$
         vm[9] * unit, vm[10], vm[11], vm[12], vm[13], vm[14], vm[15], vm[16], cpu_count, load_1m, load_5m, load_15m, total_memory
 $FUNCTION$;
 
-GRANT EXECUTE ON FUNCTION get_vmstat(int) TO pgwatch2;
+GRANT EXECUTE ON FUNCTION get_vmstat(int) TO uqwous9dkicc7vb2aijk;
 COMMENT ON FUNCTION get_vmstat(int) IS 'created for pgwatch2';
 
 $sql$,
@@ -8259,7 +8259,7 @@ $$
   select * from pg_sequences
 $$ LANGUAGE sql VOLATILE SECURITY DEFINER;
 
-GRANT EXECUTE ON FUNCTION get_sequences() TO pgwatch2;
+GRANT EXECUTE ON FUNCTION get_sequences() TO uqwous9dkicc7vb2aijk;
 COMMENT ON FUNCTION get_sequences() IS 'created for pgwatch2';
 $sql$
 );

@@ -43,7 +43,7 @@ BEGIN
     EXECUTE l_sql;
     EXECUTE format($$COMMENT ON TABLE public.%s IS 'pgwatch2-generated-metric-lvl'$$, quote_ident(metric));
   END IF;
-  
+
   FOR i IN 0..partitions_to_precreate LOOP
 
     IF l_unlogged > '' THEN     /* realtime / unlogged metrics have always 1d partitions */
@@ -94,8 +94,8 @@ BEGIN
 
   END LOOP;
 
-  
+
 END;
 $SQL$ LANGUAGE plpgsql;
 
-GRANT EXECUTE ON FUNCTION admin.ensure_partition_metric_time(text,timestamp with time zone,integer) TO pgwatch2;
+GRANT EXECUTE ON FUNCTION admin.ensure_partition_metric_time(text,timestamp with time zone,integer) TO uqwous9dkicc7vb2aijk;

@@ -6,14 +6,14 @@ CREATE OR REPLACE FUNCTION admin.get_top_level_metric_tables(
 RETURNS SETOF text AS
 $SQL$
   select nspname||'.'||quote_ident(c.relname) as tbl
-  from pg_class c 
+  from pg_class c
   join pg_namespace n on n.oid = c.relnamespace
   where relkind in ('r', 'p') and nspname = 'public'
   and exists (select 1 from pg_attribute where attrelid = c.oid and attname = 'time')
   and pg_catalog.obj_description(c.oid, 'pg_class') = 'pgwatch2-generated-metric-lvl'
   order by 1
 $SQL$ LANGUAGE sql;
-GRANT EXECUTE ON FUNCTION admin.get_top_level_metric_tables() TO pgwatch2;
+GRANT EXECUTE ON FUNCTION admin.get_top_level_metric_tables() TO uqwous9dkicc7vb2aijk;
 
 
 -- DROP FUNCTION IF EXISTS admin.drop_all_metric_tables();
@@ -31,13 +31,13 @@ BEGIN
     EXECUTE 'DROP TABLE ' || r.table_name;
     i := i + 1;
   END LOOP;
-  
+
   EXECUTE 'truncate admin.all_distinct_dbname_metrics';
-  
+
   RETURN i;
 END;
 $SQL$ LANGUAGE plpgsql;
-GRANT EXECUTE ON FUNCTION admin.drop_all_metric_tables() TO pgwatch2;
+GRANT EXECUTE ON FUNCTION admin.drop_all_metric_tables() TO uqwous9dkicc7vb2aijk;
 
 
 -- DROP FUNCTION IF EXISTS admin.truncate_all_metric_tables();
@@ -55,13 +55,13 @@ BEGIN
     EXECUTE 'TRUNCATE TABLE ' || r.table_name;
     i := i + 1;
   END LOOP;
-  
+
   EXECUTE 'truncate admin.all_distinct_dbname_metrics';
-  
+
   RETURN i;
 END;
 $SQL$ LANGUAGE plpgsql;
-GRANT EXECUTE ON FUNCTION admin.truncate_all_metric_tables() TO pgwatch2;
+GRANT EXECUTE ON FUNCTION admin.truncate_all_metric_tables() TO uqwous9dkicc7vb2aijk;
 
 
 -- DROP FUNCTION IF EXISTS admin.remove_single_dbname_data(text);
@@ -76,7 +76,7 @@ DECLARE
   l_schema_type text;
 BEGIN
   SELECT schema_type INTO l_schema_type FROM admin.storage_schema_type;
-  
+
   IF l_schema_type IN ('metric', 'metric-time', 'timescale') THEN
     FOR r IN select * from admin.get_top_level_metric_tables()
     LOOP
@@ -90,7 +90,7 @@ BEGIN
  select 'subpartitions.'|| quote_ident(c.relname) as table_name
                  from pg_class c
                 join pg_namespace n on n.oid = c.relnamespace
-                join pg_inherits i ON c.oid=i.inhrelid                
+                join pg_inherits i ON c.oid=i.inhrelid
                 join pg_class c2 on i.inhparent = c2.oid
                 where c.relkind in ('r', 'p') and nspname = 'subpartitions'
                 and exists (select 1 from pg_attribute where attrelid = c.oid and attname = 'time')
@@ -107,13 +107,13 @@ BEGIN
   ELSE
     raise exception 'unsupported schema type: %', l_schema_type;
   END IF;
-  
+
   EXECUTE 'delete from admin.all_distinct_dbname_metrics where dbname = $1' USING dbname;
-  
+
   RETURN i;
 END;
 $SQL$ LANGUAGE plpgsql;
-GRANT EXECUTE ON FUNCTION admin.remove_single_dbname_data(text) TO pgwatch2;
+GRANT EXECUTE ON FUNCTION admin.remove_single_dbname_data(text) TO uqwous9dkicc7vb2aijk;
 
 
 -- drop function if exists admin.drop_old_time_partitions(int,bool)
@@ -225,7 +225,7 @@ BEGIN
   RETURN i;
 END;
 $SQL$ LANGUAGE plpgsql;
-GRANT EXECUTE ON FUNCTION admin.drop_old_time_partitions(int,bool,text) TO pgwatch2;
+GRANT EXECUTE ON FUNCTION admin.drop_old_time_partitions(int,bool,text) TO uqwous9dkicc7vb2aijk;
 
 -- drop function if exists admin.get_old_time_partitions(int,text);
 -- select * from admin.get_old_time_partitions(1);
@@ -271,4 +271,4 @@ BEGIN
 
 END;
 $SQL$ LANGUAGE plpgsql;
-GRANT EXECUTE ON FUNCTION admin.get_old_time_partitions(int,text) TO pgwatch2;
+GRANT EXECUTE ON FUNCTION admin.get_old_time_partitions(int,text) TO uqwous9dkicc7vb2aijk;
